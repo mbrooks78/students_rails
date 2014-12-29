@@ -1,0 +1,32 @@
+<h1>Awards for <%= @student.name %></h1>
+
+<% if !@student.awards.empty? %>
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Year</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% for award in @awards %>
+          <tr>
+            <td><%= award.name %></td>
+            <td><%= award.year %></td>
+            <td><%= link_to 'Show', [@student, award] %></td>
+            <td><%= link_to 'Edit', edit_student_award_path(@student, award) %></td>
+            <td><%= link_to 'Destroy', [@student, award], method: :delete, data: {confirm: 'Are you sure?'} %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <br>
+<% else %>
+    <p><%= @student.given_name %> has not won any awards yet.</p>
+<% end %>
+<p>
+  <%= link_to 'New Award', new_student_award_path(@student) %> |
+  <%= link_to 'Back', @student %>
+</p>
